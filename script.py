@@ -1,40 +1,37 @@
-import sys
 import json
-import csv
-import os
 import argparse
 
-def main():
-    parser=argparse.ArgumentParser()
-    parser.add_argument("--user_id")
-    parser.add_argument("--project_name")
-    parser.add_argument("--in_model")
-    parser.add_argument("--in_column")
-    parser.add_argument("--out_column")
-    parser.add_argument("--out_model")
-    args=parser.parse_args()
 
-    base_path= f"{args.user_id}"
-    dataset_path=os.path.join(base_path,"data",f"data_{args.project_name}.csv")
-    preds_path=os.path.join(base_path,"preds",f"{args.out_model}.csv")
-    scores_path=os.path.join(base_path,"scores",f"{args.out_model}.csv")
-    in_model_dir=os.path.join(base_path,"models",f"{args.in_model}/")
-    out_model_dir=os.path.join(base_path,"models",f"{args.out_model}/")
+def create_predict_result(job_id, job_priority, user_id, project_name, in_model_name, target_metric):
+    with open('temp_results.json', 'r') as f:
+        data = json.load(f)
 
-    print("dataset_path=",dataset_path)
-    print("preds_path=",preds_path)
-    print("scores_path=",scores_path)
-    print("in_model_dir=",in_model_dir)
-    print("out_model_dir=",out_model_dir)
-    print("----------------------------")
+    # Process and create the final JSON structure
+    predict_result = {
+        "job_id": job_id,
+        "job_priority": job_priority,
+        "user_id": user_id,
+        "project_name": project_name,
+        "in_model_name": in_model_name,
+        "target_metric": target_metric,
+        "predictions": data["predictions"]
+    }
+
+    # Write to predict_result.json
+    with open('JSON/predict_result.json', 'w') as f:
+        json.dump(predict_result, f, indent=4)
 
 
-
-
-
-#doğrudan çalıştırmak için bunu kullandım.
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--job_id", required=True)
+    parser.add_argument("--job_priority", required=True)
+    parser.add_argument("--user_id", required=True)
+    parser.add_argument("--project_name", required=True)
+    parser.add_argument("--in_model_name", required=True)
+    parser.add_argument("--target_metric", required=True)
 
+    args = parser.parse_args()
 
-
+    create_predict_result(args.job_id, args.job_priority, args.user_id, args.project_name, args.in_model_name,
+                          args.target_metric)

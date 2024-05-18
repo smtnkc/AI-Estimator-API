@@ -8,11 +8,21 @@
     "predictions": [
         {
             "requirement": "Voter chooses the option that indicates that they will try to login as a voter.",
-            "cosmic_total": "{'error': 'Model smtnkc/bert-ssm-uc-cosmic-total is currently loading', 'estimated_time': 20.0}"
+            "cosmic_total": [
+                {
+                    "label": "size",
+                    "score": 0.7303399443626404
+                }
+            ]
         },
         {
             "requirement": "System displays the voter page to voter to enter their IZTECH account name and password.",
-            "cosmic_total": "{'error': 'Model smtnkc/bert-ssm-uc-cosmic-total is currently loading', 'estimated_time': 20.0}"
+            "cosmic_total": [
+                {
+                    "label": "size",
+                    "score": 0.7309606075286865
+                }
+            ]
         }
     ]
 }
