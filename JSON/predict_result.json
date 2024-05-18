@@ -1,0 +1,18 @@
+{
+    "job_id": "123",
+    "job_priority": "1",
+    "user_id": "456",
+    "project_name": "project_01",
+    "in_model_name": "bert-ssm-uc-cosmic-total",
+    "target_metric": "cosmic_total",
+    "predictions": [
+        {
+            "requirement": "Voter chooses the option that indicates that they will try to login as a voter.",
+            "cosmic_total": "{'error': 'Model smtnkc/bert-ssm-uc-cosmic-total is currently loading', 'estimated_time': 20.0}"
+        },
+        {
+            "requirement": "System displays the voter page to voter to enter their IZTECH account name and password.",
+            "cosmic_total": "{'error': 'Model smtnkc/bert-ssm-uc-cosmic-total is currently loading', 'estimated_time': 20.0}"
+        }
+    ]
+}
