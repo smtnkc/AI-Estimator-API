@@ -8,7 +8,7 @@
     "data":
     [
         {
-          "requirement": "Voter chooses the option that indicates that they will try to login as a voter."
+          "requirement": "A form page pops up."
         },
         {
           "requirement": "System displays the voter page to voter to enter their IZTECH account name and password."
