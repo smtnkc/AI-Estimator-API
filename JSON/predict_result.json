@@ -7,11 +7,11 @@
     "target_metric": "cosmic_total",
     "predictions": [
         {
-            "requirement": "Voter chooses the option that indicates that they will try to login as a voter.",
+            "requirement": "A form page pops up.",
             "cosmic_total": [
                 {
                     "label": "size",
-                    "score": 0.7303399443626404
+                    "score": 1.0534037351608276
                 }
             ]
         },
@@ -20,7 +20,7 @@
             "cosmic_total": [
                 {
                     "label": "size",
-                    "score": 0.7309606075286865
+                    "score": 0.9995019435882568
                 }
             ]
         }

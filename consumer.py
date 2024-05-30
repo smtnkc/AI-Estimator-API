@@ -8,18 +8,26 @@ api_token = apikey.api_token
 
 
 def query(requirement, in_model_name, api_token):
+    print(requirement)
     headers = {"Authorization": f"Bearer {api_token}"}
     API_URL = f"https://api-inference.huggingface.co/models/smtnkc/{in_model_name}"
-    payload = {"inputs": requirement}
+    payload = {"inputs": requirement,
+                "parameters":{
+                    "function_to_apply":"none"
+                }
+               }
+
+
     response = requests.post(API_URL, headers=headers, json=payload)
     response_data = response.json()
     # Assuming response is a dictionary and contains the key 'result'
     if isinstance(response_data, list) and len(response_data) > 0:
+        print(response_data)
         return response_data[0]  # assuming the first element is the numeric result you need
     else:
         return response_data  # handle error or unexpected structure
 
-
+    print("İstek gönderildi.")
 def messageCallBack(ch, method, properties, body):
     json_data = json.loads(body)
     job_id = str(json_data["job_id"])
@@ -33,6 +41,7 @@ def messageCallBack(ch, method, properties, body):
 
     for item in json_data["data"]:
         requirement = item["requirement"]
+
         try:
             result = query(requirement, in_model_name, api_token)
             results.append({
@@ -72,5 +81,4 @@ channel.basic_consume(queue='deneme', on_message_callback=messageCallBack, auto_
 
 print('Waiting for messages. To exit press CTRL+C')
 channel.start_consuming()
-
 
